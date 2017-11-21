@@ -11,6 +11,7 @@ function entlayer(options)
 		y = options.y / 2,
 		shift = options.shift,
 		hr_version = {
+			frame_count = options.frame_count,
 			filename = "__BasicSeaBlock__/graphics/entity/" .. options.name .. ".png",
 			width = options.width,
 			height = options.height,

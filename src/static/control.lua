@@ -33,7 +33,7 @@ script.on_event(defines.events.on_chunk_generated, function(e)
 	local forced_map = {
 		{
 			center = {x=0, y=0},
-			radius = 1,
+			radius = 1.6,
 			tile = "grass",
 			remove_resources = true,
 		},
@@ -99,7 +99,6 @@ script.on_event(defines.events.on_chunk_generated, function(e)
 		chest.insert({name="filtration-plant", count=3})
 		chest.insert({name="coal", count=100})
 		chest.insert({name="filter", count=15})
-		chest.insert({name="pressure-furnace", count=2})
 	end
 end)
 
