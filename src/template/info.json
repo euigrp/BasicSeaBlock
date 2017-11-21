@@ -1,0 +1,11 @@
+{
+	"name" : "MODNAME",
+	"version" : "MODVERS",
+	"title" : "Basic Sea Block",
+	"author" : "sprigy",
+	"contact" : "",
+	"homepage" : "",
+	"factorio_version" : "0.15",
+	"dependencies" : ["base >= 0.15"],
+	"description" : "Like SeaBlock, but attempts to stick closer to vanilla play."
+}
