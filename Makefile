@@ -1,7 +1,7 @@
 BLENDER_PATH?=~/Downloads/blender/blender
 
 MODNAME=BasicSeaBlock
-MODVERS=0.1.0
+MODVERS=0.1.1
 
 OUTPATH=./$(MODNAME)_$(MODVERS)
 ZIPPATH=$(OUTPATH).zip
@@ -84,7 +84,6 @@ pf-direction-sheet-width=4
 	./src/build_scripts/sheetify.py $($(basename $(notdir $@))-sheet-width) $@  $(dir $<)/*.png
 
 pin-fm-direction='{"x":1.5, "y":3, "dx":8, "cx":2}'
-pin-af-anim='{"x":1.5, "y":3, "dx":4, "cx":8}' '{"x":1.5, "y":11, "dx":4, "cx":8, "dy":4, "cy":2}'
 pin-af-direction='{"x":1.5, "y":3, "dx":4, "cx":1}' '{"x":9.5, "y":3, "dx":4, "cx":2}'
 pin-pf-direction='{"x":0.5, "y":5, "dx":16, "cx":2}'
 
