@@ -20,13 +20,25 @@ script.on_event(defines.events.on_force_created, function(e)
 	e.force.set_spawn_position({x=0,y=0}, game.surfaces["nauvis"])
 end)
 
+local limits = {
+	none=32,
+	low=96,
+	normal=128,
+	high=176,
+}
+limits['very-low']=64
+limits['very-high']=256
+
 script.on_event(defines.events.on_chunk_generated, function(e)
 	local minx = e.area.left_top.x
 	local maxx = e.area.right_bottom.x
 	local miny = e.area.left_top.y
 	local maxy = e.area.right_bottom.y
 
-	if (minx*minx + maxx*maxx > 300 * 300) then
+	local radius = limits[e.surface.map_gen_settings.starting_area]
+	local limit = (radius+32) * (radius+32)
+
+	if (minx*minx + maxx*maxx > limit) then
 		return
 	end
 
@@ -44,7 +56,7 @@ script.on_event(defines.events.on_chunk_generated, function(e)
 		},
 		{
 			center = {x=0, y=0},
-			radius = 256,
+			radius = radius,
 			tile = "deepwater",
 		},
 	}

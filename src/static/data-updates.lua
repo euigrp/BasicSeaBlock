@@ -3,8 +3,11 @@ for k,v in pairs(data.raw.resource) do
 end
 
 for k,v in pairs(data.raw["unit-spawner"]) do
-	v.autoplace = nil
-	v.control = nil
+	table.insert(v.autoplace.peaks, {influence = 0.8})
+end
+
+for i,sz in ipairs({"small-worm-turret", "medium-worm-turret", "big-worm-turret"}) do
+	table.insert(data.raw.turret[sz].autoplace.peaks, {influence = 0.4})
 end
 
 for k,v in pairs(data.raw.tree) do

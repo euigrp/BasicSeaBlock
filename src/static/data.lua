@@ -65,13 +65,70 @@ require("prototypes.item")
 require("prototypes.recipe")
 require("prototypes.entity")
 
-for _,v in pairs(data.raw.tile) do
+for n,v in pairs(data.raw.tile) do
   v.autoplace = nil
+end
+
+local autoplace_utils = require("autoplace_utils")
+
+local function autoplace_settings(noise_layer, rectangles)
+  local ret = {}
+
+  if noise_layer then
+    ret = {
+      {
+        influence = 0.9999,
+        noise_layer = noise_layer,
+        noise_persistence = 0.9,
+        octaves_difference = 0,
+        starting_area_amount = 0,
+	max_probability = 0.1,
+      }
+    }
+  end
+
+--  autoplace_utils.peaks(rectangles, ret)
+
+  return { peaks = ret }
 end
 
 data.raw.tile['sand'].autoplace = {
   peaks = {{
     influence = 0.1
+   }}
+}
+
+
+
+data.raw.tile['grass'].autoplace =
+{
+  sharpness = 1,
+  control = "enemy-base",
+  richness_multiplier = 1,
+  richness_base = 0,
+  force = "enemy",
+  max_probability = 0.6,
+  peaks = {
+  {
+    influence = -1,
+    starting_area_weight_optimal = 1,
+    starting_area_weight_range = 0.001,
+    starting_area_weight_max_range = 0.001,
+  },
+  {
+    influence = 0.9,
+    noise_layer = 'enemy-base',
+    noise_octaves_difference = -2.5,
+    noise_persistence = 0.2,
+  },
+  {
+    influence = 0.4,
+    noise_layer = 'enemy-base',
+    noise_octaves_difference = -2.5,
+    noise_persistence = 0.2,
+  },
+  {
+    influence = -1.6
   }}
 }
 
