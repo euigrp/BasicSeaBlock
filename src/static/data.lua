@@ -15,11 +15,7 @@ data:extend({
   },
   {
     type = "recipe-category",
-    name = "water-pumping"
-  },
-  {
-    type = "resource-category",
-    name = "sludge"
+    name = "borehole-mine"
   },
   {
     type = "item-subgroup",
@@ -146,3 +142,5 @@ data.raw.tile['deepwater'].autoplace = {
 
 table.insert(data.raw["technology"]["oil-processing"].effects, {type = "unlock-recipe", recipe = "pressure-furnace"})
 table.insert(data.raw["technology"]["oil-processing"].effects, {type = "unlock-recipe", recipe = "pressure-pulp"})
+table.insert(data.raw["technology"]["nuclear-power"].effects, {type = "unlock-recipe", recipe = "mine-uranium"})
+table.insert(data.raw["technology"]["nuclear-power"].effects, {type = "unlock-recipe", recipe = "borehole-mine"})

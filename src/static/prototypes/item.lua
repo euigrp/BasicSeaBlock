@@ -4,7 +4,7 @@ data:extend{
 {
 	type = "item",
 	name = "algae-farm",
-	icon = "__BasicSeaBlock__/graphics/icons/algae-farm.png",
+	icon = "__BasicSeaBlock__/graphics/icons/af.png",
 	flags = {"goes-to-quickbar"},
 	subgroup = "extraction-machine",
 	order = "a[algae]-a[algae-farm]",
@@ -14,7 +14,7 @@ data:extend{
 {
 	type = "item",
 	name = "filtration-plant",
-	icon = "__BasicSeaBlock__/graphics/icons/filtration-plant.png",
+	icon = "__BasicSeaBlock__/graphics/icons/fm.png",
 	flags = {"goes-to-quickbar"},
 	subgroup = "extraction-machine",
 	order = "a[algae]-b[filtration-machine]",
@@ -24,11 +24,21 @@ data:extend{
 {
 	type = "item",
 	name = "pressure-furnace",
-	icon = "__BasicSeaBlock__/graphics/icons/pressure-furnace.png",
+	icon = "__BasicSeaBlock__/graphics/icons/pf.png",
 	flags = {"goes-to-quickbar"},
 	subgroup = "extraction-machine",
 	order = "a[algae]-c[pressure-furnace]",
 	place_result = "pressure-furnace",
+	stack_size = 10
+},
+{
+	type = "item",
+	name = "borehole-mine",
+	icon = "__BasicSeaBlock__/graphics/icons/bm.png",
+	flags = {"goes-to-quickbar"},
+	subgroup = "extraction-machine",
+	order = "a[items]-c[borehole-mine]",
+	place_result = "borehole-mine",
 	stack_size = 10
 },
 {
@@ -43,7 +53,7 @@ data:extend{
 {
 	type = "item",
 	name = "spent-filter",
-	icon = "__BasicSeaBlock__/graphics/icons/filter-spent.png",
+	icon = "__BasicSeaBlock__/graphics/icons/filter-empty.png",
 	flags = {},
 	subgroup = "intermediate-product",
 	order = "b[filter]-a[empty]",

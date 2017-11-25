@@ -14,7 +14,7 @@ data:extend({
 		results = {
 			{type="item", name="algae-farm", amount=1},
 		},
-		icon="__BasicSeaBlock__/graphics/icons/algae-farm.png",
+		icon="__BasicSeaBlock__/graphics/icons/af.png",
 		subgroup = "extraction-machine"
 	},
 	{
@@ -30,7 +30,7 @@ data:extend({
 		results = {
 			{type="item", name="filtration-plant", amount=1},
 		},
-		icon = "__BasicSeaBlock__/graphics/icons/filtration-plant.png",
+		icon = "__BasicSeaBlock__/graphics/icons/fm.png",
 		subgroup = "extraction-machine"
 	},
 	{
@@ -48,7 +48,24 @@ data:extend({
 		results = {
 			{type="item", name="pressure-furnace", amount=1},
 		},
-		icon = "__BasicSeaBlock__/graphics/icons/pressure-furnace.png",
+		icon = "__BasicSeaBlock__/graphics/icons/pf.png",
+		subgroup = "extraction-machine"
+	},
+	{
+		type = "recipe",
+		name = "borehole-mine",
+		energy_required = 0.25,
+		enabled = false,
+		ingredients = {
+			{"steel-plate", 40},
+			{"concrete", 150},
+			{"advanced-circuit", 50},
+			{"electric-engine-unit", 2},
+		},
+		results = {
+			{type="item", name="borehole-mine", amount=1},
+		},
+		icon = "__BasicSeaBlock__/graphics/icons/bm.png",
 		subgroup = "extraction-machine"
 	},
 	{
@@ -236,5 +253,21 @@ data:extend({
 		subgroup = "filter-group",
 		category = "pressure-furnace",
 		order = "z",
+	},
+	{
+		type = "recipe",
+		name = "mine-uranium",
+		energy_required = 5,
+		enabled = false,
+		ingredients = {
+			{type="item", name="construction-robot", amount=1},
+		},
+		results = {
+			{type="item", name="construction-robot", amount_min=0, amount_max=1, probability=0.95},
+			{type="item", name="uranium-ore", amount=10},
+		},
+		icon="__BasicSeaBlock__/graphics/icons/mine-uranium.png",
+		subgroup = "filter-group",
+		category = "borehole-mine",
 	},
 })

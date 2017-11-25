@@ -1,14 +1,14 @@
 BLENDER_PATH?=~/Downloads/blender/blender
 
 MODNAME=BasicSeaBlock
-MODVERS=0.1.1
+MODVERS=0.1.2
 
 OUTPATH=./$(MODNAME)_$(MODVERS)
 ZIPPATH=$(OUTPATH).zip
 
 $(OUTPATH):
 	mkdir -p $(OUTPATH)
-	rsync -av ./src/static/* $(OUTPATH)/
+	rsync -av ./src/static/* $(OUTPATH)/ --delete
 
 .PHONY: clean $(OUTPATH) blender
 .SECONDARY:
@@ -63,6 +63,15 @@ pf-anim-options= -x 384 -y 384 --samples 512 $(DEVSAMPLES)
 pf-direction-frames= -s 21 -e 24
 pf-direction-options= -x 384 -y 384 --samples 512 $(DEVSAMPLES)
 
+bm-anim-frames= -s 1 -e 16
+bm-anim-options= -x 384 -y 384 --samples 128 $(DEVSAMPLES)
+
+bm-shadow-frames= -s 17 -e 17
+bm-shadow-options= -x 384 -y 384 --samples 128 $(DEVSAMPLES)
+
+bm-direction-frames= -s 18 -e 18
+bm-direction-options= -x 384 -y 384 --samples 128 $(DEVSAMPLES)
+
 ./render/%-shadow/.content ./render/%-anim/.content ./render/%-direction/.content: ./src/assets/models/%.blend
 	mkdir -p $(dir $@)
 	$(BLENDER_PATH) -b $< -o "$(dir $@)/##.png" $($(notdir $(abspath $@/..))-frames) -P 'src/build_scripts/size.py' -- $($(notdir $(abspath $@/..))-options)
@@ -78,6 +87,10 @@ af-shadow-sheet-width=4
 
 pf-anim-sheet-width=5
 pf-direction-sheet-width=4
+
+bm-anim-sheet-width=5
+bm-shadow-sheet-width=1
+bm-direction-sheet-width=1
 
 ./sheets/%.png: ./render/%/.content
 	mkdir -p ./sheets/
@@ -99,18 +112,27 @@ pin-pf-direction='{"x":0.5, "y":5, "dx":16, "cx":2}'
 ./sheets/pf.png: sheets/pf-anim.png sheets/pin-pf-direction.png
 	./src/build_scripts/compose.py ./sheets/pf.png 1920x1920 0x0:sheets/pf-anim.png 0x1536:sheets/pin-pf-direction.png
 
+./sheets/bm.png: sheets/bm-anim.png sheets/bm-shadow.png sheets/bm-direction.png
+	./src/build_scripts/compose.py ./sheets/bm.png 1920x1536 0x0:sheets/bm-anim.png 384x1152:sheets/bm-direction.png 768x1152:sheets/bm-shadow.png
+
 ./icons/pf.png: ./src/assets/models/pf.blend
 	rm -f ./icons/pf.png
 	mkdir -p ./icons/
-	$(BLENDER_PATH) -b './src/assets/models/pf.blend' -o './icons/pf.png' -P './src/build_scripts/size.py' -f 24 -- -x 32 -y 32 --samples 32 --obj-prop Camera.data.ortho_scale=1.1 --no-anim
+	$(BLENDER_PATH) -b './src/assets/models/pf.blend' -o './icons/pf.png' -P './src/build_scripts/size.py' -f 24 -- \
+		-x 32 -y 32 --samples 32 --obj-prop Camera.data.ortho_scale=1.1 --no-anim \
+		--obj-prop Camera.location='(0,-4,1)' \
+		--obj-prop Camera.rotation_euler='(1.35263, 0, 0)'
+
 	mv ./icons/pf.png* ./icons/pf.png
 
-./icons/af.png: ./src/assets/models/pf.blend
+./icons/af.png: ./src/assets/models/af.blend
 	rm -f ./icons/af.png
 	mkdir -p ./icons/
-	$(BLENDER_PATH) -b './src/assets/models/af.blend' -o './icons/af.png' -P './src/build_scripts/size.py' -f 1 -- \
+	$(BLENDER_PATH) -b './src/assets/models/af.blend' -o './icons/af.png' -P './src/build_scripts/size.py' -f 40 -- \
 		-x 32 -y 32 --samples 256 \
 		--obj-prop Camera.data.ortho_scale=1.2 \
+		--obj-prop Camera.location='(0,4,2.6)' \
+		--obj-prop Camera.rotation_euler='(1, 0, 3.14159)' \
 		--obj-prop Lamp.data.cycles.cast_shadow=False \
 		--scene-prop 'world.horizon_color=(0.5,0.5,0.5)' \
 		--no-anim
@@ -122,6 +144,13 @@ pin-pf-direction='{"x":0.5, "y":5, "dx":16, "cx":2}'
 	$(BLENDER_PATH) -b './src/assets/models/fm.blend' -o './icons/fm.png' -P './src/build_scripts/size.py' -f 34 -- \
 		-x 32 -y 32 --samples 256 --obj-prop Camera.data.ortho_scale=1.0 --no-anim
 	mv ./icons/fm.png* ./icons/fm.png
+
+./icons/bm.png: ./src/assets/models/bm.blend
+	rm -f ./icons/bm.png
+	mkdir -p ./icons/
+	$(BLENDER_PATH) -b './src/assets/models/bm.blend' -o './icons/bm.png' -P './src/build_scripts/size.py' -f 0 -- \
+		-x 32 -y 32 --samples 256 --no-anim
+	mv ./icons/bm.png* ./icons/bm.png
 
 ./icons/filter.png: ./src/assets/models/filter-icon.blend
 	rm -f ./icons/filter.png
@@ -137,14 +166,15 @@ pin-pf-direction='{"x":0.5, "y":5, "dx":16, "cx":2}'
 		-x 32 -y 32 --samples 128 --no-anim
 	mv ./icons/filter-empty.png* ./icons/filter-empty.png
 
+
 ./icons/%-border.png: ./icons/%.png
 	./src/build_scripts/dark_border.py $< $@
 
 render_list=fm-anim fm-direction fm-shadow af-anim af-shadow af-direction pf-anim pf-direction
 render_files=$(addsuffix /.content,$(addprefix ./render/,$(render_list)))
-sheet_list=fm af pf
+sheet_list=fm af pf bm
 sheet_files=$(addsuffix .png,$(addprefix ./sheets/,$(sheet_list)))
-icon_list=af-border fm-border pf-border filter filter-empty
+icon_list=af fm pf bm filter filter-empty
 icon_files=$(addsuffix .png,$(addprefix ./icons/,$(icon_list)))
 
 ICONPATH=$(OUTPATH)/graphics/icons/
@@ -162,6 +192,7 @@ ENTITYPATH=$(OUTPATH)/graphics/entity/
 	./src/build_scripts/shrink.py sr- 2 $(ENTITYPATH)/*
 
 $(ZIPPATH): $(OUTPATH) .templated .install-graphics-icons .install-graphics-entity
+	rm -f $(ZIPPATH)
 	zip -r $(ZIPPATH) $(OUTPATH)
 
 mod: $(ZIPPATH)
