@@ -19,4 +19,5 @@ for k,v in pairs(data.raw["simple-entity"]) do
 end
 
 data.raw.recipe['landfill'].ingredients = {{"stone", 5}}
-data.raw.item['landfill'].stack_size = 1000
+data.raw.recipe['landfill'].results = {{type="item", name="landfill", amount=4}}
+data.raw.item['landfill'].stack_size = 4000

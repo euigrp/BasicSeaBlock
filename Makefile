@@ -1,7 +1,7 @@
 BLENDER_PATH?=~/Downloads/blender/blender
 
 MODNAME=BasicSeaBlock
-MODVERS=0.1.2
+MODVERS=0.1.3
 
 OUTPATH=./$(MODNAME)_$(MODVERS)
 ZIPPATH=$(OUTPATH).zip
@@ -12,9 +12,6 @@ $(OUTPATH):
 
 .PHONY: clean $(OUTPATH) blender
 .SECONDARY:
-
-test:
-	echo foo
 
 clean:
 	rm -rf $(OUTPATH)

@@ -15,6 +15,7 @@ data:extend({
 			{type="item", name="algae-farm", amount=1},
 		},
 		icon="__BasicSeaBlock__/graphics/icons/af.png",
+		icon_size = 32,
 		subgroup = "extraction-machine"
 	},
 	{
@@ -31,6 +32,7 @@ data:extend({
 			{type="item", name="filtration-plant", amount=1},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/fm.png",
+		icon_size = 32,
 		subgroup = "extraction-machine"
 	},
 	{
@@ -49,6 +51,7 @@ data:extend({
 			{type="item", name="pressure-furnace", amount=1},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/pf.png",
+		icon_size = 32,
 		subgroup = "extraction-machine"
 	},
 	{
@@ -66,6 +69,7 @@ data:extend({
 			{type="item", name="borehole-mine", amount=1},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/bm.png",
+		icon_size = 32,
 		subgroup = "extraction-machine"
 	},
 	{
@@ -80,6 +84,7 @@ data:extend({
 			{type="fluid", name="algal-sludge", amount=50},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/algae-from-water.png",
+		icon_size = 32,
 		subgroup = "algae-group",
 		category = "algaefarming"
 	},
@@ -96,6 +101,7 @@ data:extend({
 			{type="fluid", name="algal-sludge", amount=400},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/algal-sludge_multiply.png",
+		icon_size = 32,
 		subgroup = "algae-group",
 		category = "algaefarming"
 	},
@@ -112,6 +118,7 @@ data:extend({
 			{type="fluid", name="algal-sludge", amount=40},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/pulp.png",
+		icon_size = 32,
 		subgroup = "algae-group",
 		category = "algaefarming"
 	},
@@ -127,6 +134,7 @@ data:extend({
 			{type="item", name="coal", amount=1},
 		},
 		icon = "__base__/graphics/icons/coal.png",
+		icon_size = 32,
 		subgroup = "algae-group",
 		category = "smelting"
 	},
@@ -142,6 +150,7 @@ data:extend({
 			{type="item", name="wood", amount=1},
 		},
 		icon = "__base__/graphics/icons/wood.png",
+		icon_size = 32,
 		subgroup = "algae-group",
 		category = "algaefarming"
 	},
@@ -157,6 +166,7 @@ data:extend({
 			{type="item", name="spent-filter", amount=1},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/filter-spent.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "crafting"
 	},
@@ -173,6 +183,7 @@ data:extend({
 			{type="item", name="filter", amount=5},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/filter.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "crafting"
 	},
@@ -190,6 +201,7 @@ data:extend({
 			{type="item", name="spent-filter", amount=1},
 		},
 		icon = "__BasicSeaBlock__/graphics/icons/mineral-sludge.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "filtering"
 	},
@@ -205,6 +217,7 @@ data:extend({
 			{type="item", name="copper-ore", amount=3},
 		},
 		icon = "__base__/graphics/icons/copper-ore.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "filtering"
 	},
@@ -220,6 +233,7 @@ data:extend({
 			{type="item", name="iron-ore", amount=3},
 		},
 		icon = "__base__/graphics/icons/iron-ore.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "filtering"
 	},
@@ -235,6 +249,7 @@ data:extend({
 			{type="item", name="stone", amount=5},
 		},
 		icon = "__base__/graphics/icons/stone.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "filtering"
 	},
@@ -250,6 +265,7 @@ data:extend({
 			{type="fluid", name="crude-oil", amount=100},
 		},
 		icon = "__base__/graphics/icons/crude-oil.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "pressure-furnace",
 		order = "z",
@@ -267,6 +283,7 @@ data:extend({
 			{type="item", name="uranium-ore", amount=10},
 		},
 		icon="__BasicSeaBlock__/graphics/icons/mine-uranium.png",
+		icon_size = 32,
 		subgroup = "filter-group",
 		category = "borehole-mine",
 	},

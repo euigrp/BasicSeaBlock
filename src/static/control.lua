@@ -46,12 +46,12 @@ script.on_event(defines.events.on_chunk_generated, function(e)
 		{
 			center = {x=0, y=0},
 			radius = 1.6,
-			tile = "grass",
+			tile = "grass-1",
 			remove_resources = true,
 		},
 		{
 			center = {x=0, y=0},
-			radius = 10,
+			radius = 9.5,
 			tile = "water",
 		},
 		{
@@ -101,7 +101,7 @@ script.on_event(defines.events.on_chunk_generated, function(e)
 	e.surface.set_tiles(tiles)
 	if starting_tile then
 		local chest = e.surface.create_entity({name="iron-chest", position = {0, 0}, force=game.forces.player})
-		chest.insert({name="landfill", count=1000})
+		chest.insert({name="landfill", count=4000})
 		chest.insert({name="offshore-pump", count=1})
 		chest.insert({name="pipe", count=50})
 		chest.insert({name="boiler", count=1})

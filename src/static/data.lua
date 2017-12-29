@@ -38,6 +38,7 @@ data:extend({
     flow_color = {r=0.1, g=0.43, b=0.1},
     max_temperature = 100,
     icon = "__BasicSeaBlock__/graphics/icons/algal-sludge.png",
+    icon_size = 32,
     pressure_to_speed_ratio = 0.4,
     flow_to_energy_ratio = 0.59,
     order = "a[fluid]-b[algal-sludge]"
@@ -51,6 +52,7 @@ data:extend({
     flow_color = {r=0.6, g=0.15, b=0.15},
     max_temperature = 100,
     icon = "__BasicSeaBlock__/graphics/icons/mineral-sludge.png",
+    icon_size = 32,
     pressure_to_speed_ratio = 0.4,
     flow_to_energy_ratio = 0.59,
     order = "a[fluid]-b[algal-sludge]"
@@ -88,7 +90,7 @@ local function autoplace_settings(noise_layer, rectangles)
   return { peaks = ret }
 end
 
-data.raw.tile['sand'].autoplace = {
+data.raw.tile['sand-1'].autoplace = {
   peaks = {{
     influence = 0.1
    }}
@@ -96,7 +98,7 @@ data.raw.tile['sand'].autoplace = {
 
 
 
-data.raw.tile['grass'].autoplace =
+data.raw.tile['grass-1'].autoplace =
 {
   sharpness = 1,
   control = "enemy-base",
@@ -144,3 +146,16 @@ table.insert(data.raw["technology"]["oil-processing"].effects, {type = "unlock-r
 table.insert(data.raw["technology"]["oil-processing"].effects, {type = "unlock-recipe", recipe = "pressure-pulp"})
 table.insert(data.raw["technology"]["nuclear-power"].effects, {type = "unlock-recipe", recipe = "mine-uranium"})
 table.insert(data.raw["technology"]["nuclear-power"].effects, {type = "unlock-recipe", recipe = "borehole-mine"})
+
+-- Get rid of cliffs - the small islands don't look right with cliffs on them
+data:extend({
+	{
+		name = "default-cliffiness",
+		type = "noise-expression",
+		expression = {
+			expression_id = 'kill-cliffiness',
+			literal_value = 0,
+			type = 'literal-number'
+		}
+	}
+})

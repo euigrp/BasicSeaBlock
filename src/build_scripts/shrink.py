@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import sys
 import os.path
-import Image
+from PIL import Image
 
 prefix = sys.argv[1]
 scale = float(sys.argv[2])
